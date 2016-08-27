@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Login</title>
+</head>
+
+<body style="margin-top:30%; background-color:#66ccff;">
+    <center>
+        <h1>Login Form</h1>
+        <label for="login">login:-</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="login">
+        <br/>
+        <br/>
+        <label for="password">password :-</label>
+        <input type="password" id="password">
+        <br/>
+        <br/>
+        <input type="button" value="Login" onclick="demo()">
+        <h1 id="res"></h1>
+    </center>
+    
+</body>
+<script>
+function demo() {
+	var request=require('request');
+    var ipcRenderer = require("electron").ipcRenderer;
+    alert("click")
+    var username = "";
+    var password = "";
+    if (document.getElementById("login") && (document.getElementById("password"))) {
+        username = document.getElementById("login").value;
+        password = document.getElementById("password").value;
+    }
+    if ((username) && (password)) {
+    	var data=request.post('http://localhost:8080',{form:{"username":username,"password":password}},function(err,r,body){
+    		console.log("body"+JSON.stringify(body));
+    		console.log("err"+JSON.stringify(err));
+    		console.log("r"+JSON.stringify(r));
+    		ipcRenderer.send("login-attempt", body);
+    	})
+        alert("sending login-attempt to main via ipc");
+        // alert(JSON.stringify(data);
+        // ipcRenderer.send("login-attempt", username, password);
+    }
+    var remote = require('electron').remote;
+    document.getElementById('res').innerHTML = (remote.getGlobal('sharedObj').prop1);
+}
+</script>
+
+</html>
