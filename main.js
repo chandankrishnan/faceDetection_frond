@@ -14,7 +14,7 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
     mainWindow = new browserWindow({ width: 800, height: 600, 'dark-theme': true });
-    mainWindow.loadURL('file://' + __dirname + '/main.html');
+    mainWindow.loadURL('file://' + __dirname + '/template/main.html');
 
     // var htmlContents = mainWindow.webContents;
 
