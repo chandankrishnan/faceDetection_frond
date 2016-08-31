@@ -43,7 +43,7 @@ app.on('ready', function() {
         cosole.log(global.showImage);
     })
 
-    // mainWindow.openDevTools();
+    mainWindow.openDevTools();
     mainWindow.on('close', function() {
         mainWindow = null;
     });
