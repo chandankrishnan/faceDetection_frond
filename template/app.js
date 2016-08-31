@@ -20,4 +20,5 @@ socket.on('frame', function (data) {
     context.drawImage(this, 0, 0, canvas.width, canvas.height);
   };
   img.src = 'data:image/png;base64,' + base64String;
+  socket.emit('data',data)
 });
