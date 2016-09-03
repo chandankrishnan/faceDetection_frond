@@ -17,9 +17,6 @@ app.on('ready', function() {
     mainWindow.loadURL('file://' + __dirname + '/template/main.html');
 
     // var htmlContents = mainWindow.webContents;
-
-    // console.log(htmlContents);
-
     ipcMain.on("login-attempt", function(event, body) {
         console.log(body == "correctfsd");
         global.sharedObj = null;
@@ -38,8 +35,8 @@ app.on('ready', function() {
     });
 
 
-    ipcMain.on("show_image",function(event,body){
-        global.showImage={disp_img:null};
+    ipcMain.on("show_image", function(event, body) {
+        global.showImage = { disp_img: null };
         cosole.log(global.showImage);
     })
 
